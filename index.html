@@ -58,15 +58,28 @@ input[type=text]:focus{border-color:var(--ac)}
 #pl{display:none;margin-top:16px;text-align:center;border:1px solid var(--ac);border-radius:22px;padding:26px;background:var(--cd)}
 .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 .sig{background:currentColor;-webkit-mask:var(--sig) center/contain no-repeat;mask:var(--sig) center/contain no-repeat;aspect-ratio:620/391}
-#intro{position:fixed;inset:0;z-index:99;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity 1s}
-#intro.out{opacity:0;pointer-events:none}
-#intro .sl{position:absolute;opacity:0;transform:translateY(12px);transition:opacity 1s,transform 1s}
-#intro .sl.on{opacity:1;transform:none}
-#intro .big{font-size:clamp(2.4rem,9vw,4.6rem);font-weight:800;letter-spacing:.04em;direction:ltr}
-#intro .sm{text-transform:uppercase;color:#2ee6c5;font-size:1.3rem;margin-top:6px;letter-spacing:.2em}
-#intro .sig{width:min(300px,70vw);margin:14px auto 0;color:#fff;-webkit-clip-path:inset(0 100% 0 0);clip-path:inset(0 100% 0 0);transition:clip-path 1.8s .5s ease-out,-webkit-clip-path 1.8s .5s ease-out}
+#intro{position:fixed;inset:0;z-index:99;background:#02080a;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;transition:opacity 1.1s,filter 1.1s}
+#intro.out{opacity:0;filter:blur(8px);pointer-events:none}
+#intro .bl{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:dr 14s ease-in-out infinite alternate}
+#intro .b1{width:60vmax;height:60vmax;background:#0f766e;left:-20vmax;top:-20vmax}
+#intro .b2{width:50vmax;height:50vmax;background:#0e4a6b;right:-18vmax;bottom:-18vmax;animation-delay:-5s}
+#intro .b3{width:30vmax;height:30vmax;background:#2ee6c5;opacity:.16;left:35%;top:40%;animation-duration:10s}
+@keyframes dr{to{transform:translate(8vmax,6vmax) scale(1.15)}}
+#ic{position:absolute;inset:0;width:100%;height:100%}
+#intro:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.65));pointer-events:none}
+#intro .sl{position:absolute;z-index:2;opacity:0;transform:translateY(18px) scale(.97);filter:blur(10px);transition:opacity 1s,transform 1.2s,filter 1s;padding:0 20px}
+#intro .sl.on{opacity:1;transform:none;filter:none}
+#intro .big{font-size:clamp(2.6rem,10vw,5rem);font-weight:800;letter-spacing:.03em;line-height:1.15;background:linear-gradient(180deg,#fff 30%,#9be8da);-webkit-background-clip:text;background-clip:text;color:transparent;direction:ltr}
+#intro .big2{font-size:clamp(1.8rem,7vw,3rem)}
+#intro .sm{color:#7fb5ac;font-size:clamp(.78rem,2.6vw,1.02rem);letter-spacing:.38em;text-transform:uppercase;margin:8px 0}
+#intro .line{width:64px;height:2px;background:linear-gradient(90deg,transparent,#2ee6c5,transparent);margin:18px auto}
+#intro .sig{width:min(300px,70vw);margin:10px auto;background:linear-gradient(90deg,#fff,#5eead4);-webkit-clip-path:inset(0 100% 0 0);clip-path:inset(0 100% 0 0);transition:clip-path 1.9s .6s ease-out,-webkit-clip-path 1.9s .6s ease-out}
 #intro .on .sig{-webkit-clip-path:inset(0 0 0 0);clip-path:inset(0 0 0 0)}
-#intro button{position:absolute;bottom:22px;inset-inline-end:22px;background:none;border:1px solid #333;color:#999;border-radius:99px;padding:4px 18px}
+#intro svg{width:150px;margin-bottom:6px;filter:drop-shadow(0 0 22px rgba(46,230,197,.65));animation:fl 4s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translateY(-10px) rotate(-3deg)}}
+#ip{position:absolute;z-index:3;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,#2ee6c5,#7dd3fc)}
+#intro button{position:absolute;z-index:3;bottom:22px;inset-inline-end:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:#a9d3cc;border-radius:99px;padding:5px 18px;backdrop-filter:blur(6px)}
+#intro button:hover{color:#fff;border-color:#2ee6c5}
 body.lock{overflow:hidden}
 footer{text-align:center;color:var(--mut);padding:40px 16px 34px;border-top:1px solid var(--bd);font-size:.88rem}
 footer .sig{width:170px;margin:0 auto 10px;color:var(--ink);opacity:.9}
@@ -93,9 +106,12 @@ footer .sig{width:170px;margin:0 auto 10px;color:var(--ink);opacity:.9}
 </head>
 <body class="lock">
 <div id="intro">
-  <div class="sl" id="s1"><div class="big">Taha Lhd</div><div class="sig"></div><div class="sm">presents</div></div>
-  <div class="sl" id="s2"><div class="sm" style="margin:0 0 6px">with help from</div><div class="big">Issam</div></div>
-  <div class="sl" id="s3"><div class="big" style="letter-spacing:0">🕊️ Peace Link</div><div class="sm" style="letter-spacing:.1em">Peace is built</div></div>
+  <div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div><canvas id="ic"></canvas>
+  <div class="sl" id="s1"><div class="big">Taha E. Louahdi</div><div class="sig"></div><div class="sm">presents</div></div>
+  <div class="sl" id="s2"><div class="sm">with help from</div><div class="line"></div><div class="big">Issam Acila</div></div>
+  <div class="sl" id="s3"><div class="sm">From section</div><div class="big big2">2TMEE1</div><div class="line"></div><div class="sm">Under the supervision of</div><div class="big big2">Mrs. H.Guelati</div></div>
+  <div class="sl" id="s4"><svg viewBox="10 0 370 275"><g fill="#fff"><path opacity=".55" d="M262 158C282 98 262 42 222 6C204 58 208 112 228 158Z"/><path opacity=".9" d="M100 196L22 232C48 240 72 238 92 230L42 262C74 262 104 250 128 220Z"/><path d="M95 200C150 165 230 150 285 150C300 135 322 128 335 138L362 146L336 153C330 175 290 215 225 222C170 226 125 215 95 200Z"/><path opacity=".95" d="M240 165C225 105 165 55 78 28C100 85 128 128 160 158C186 174 218 176 240 165Z"/></g></svg><div class="big">Peace Link</div><div class="line"></div><div class="sm">Peace is built</div></div>
+  <div id="ip"></div>
   <button onclick="endIntro()">Skip ›</button>
 </div>
 <nav>
@@ -170,7 +186,7 @@ footer .sig{width:170px;margin:0 auto 10px;color:var(--ink);opacity:.9}
   <img id="pimg" alt="">
 </section>
 </main>
-<footer><div class="sig"></div><div style="color:var(--ink);font-size:1rem">Made by <b>Taha &amp; Issam</b></div><div style="color:var(--ac)">Section 2 · Electrical Engineering 1</div><div style="margin-top:8px">A school project about peace. The countries in the simulation are fictional; the real events mentioned are summarized.</div></footer>
+<footer><div class="sig"></div><div style="color:var(--ink);font-size:1rem">Made by <b>Taha E. Louahdi &amp; Issam Acila</b></div><div style="color:var(--ac)">Section 2TMEE1</div><div style="color:var(--ink)">Under the supervision of <b>Mrs. H.Guelati</b></div><div style="margin-top:8px">A school project about peace. The countries in the simulation are fictional; the real events mentioned are summarized.</div></footer>
 <script>
 const $=i=>document.getElementById(i);
 const PT=[["Negative peace","The absence of direct violence: no war, no fighting. This is necessary but not enough. An outward calm can hide injustice, fear and a lack of rights, and the conflict can erupt at any moment."],
@@ -238,12 +254,14 @@ function mk(){const n=($("nm").value.trim()||"Friend of Peace").replace(/[<>&"]/
  $("pl").style.display="block";
  $("pl").innerHTML=`<h3 style="margin-top:0">Peace Pledge</h3><p>I, <b>${n}</b>, pledge to choose dialogue over violence, respect over hatred, and to be a bridge between people.</p>${l.length?`<p class="tag">My commitments:</p><p>${l.join("<br>")}</p>`:""}<small>${new Date().toLocaleDateString("en-GB")}</small>`;}
 
-function endIntro(){clearTimeout(window.t1);$("intro").classList.add("out");document.body.classList.remove("lock");setTimeout(()=>$("intro").remove(),1100);}
-(function(){const seq=["s1","s2","s3"];let i=0;
- function step(){if(i>=seq.length){endIntro();return;}
-  const e=$(seq[i]);e.classList.add("on");
-  window.t1=setTimeout(()=>{e.classList.remove("on");i++;window.t1=setTimeout(step,900);},i==0?3800:2600);}
- window.t1=setTimeout(step,600);})();
+function endIntro(){clearTimeout(window.t1);$("intro").classList.add("out");document.body.classList.remove("lock");setTimeout(()=>{window.stopIc&&window.stopIc();$("intro").remove()},1200);}
+(function(){const cv=$("ic"),x=cv.getContext("2d");let w,h,raf;const ps=[];function rs(){w=cv.width=innerWidth;h=cv.height=innerHeight}rs();addEventListener("resize",rs);
+ for(let i=0;i<70;i++)ps.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,v:Math.random()*.35+.1,a:Math.random()*.6+.2});
+ function f(){x.clearRect(0,0,w,h);ps.forEach(p=>{p.y-=p.v;p.x+=Math.sin(p.y/60)*.15;if(p.y<-5){p.y=h+5;p.x=Math.random()*w}x.fillStyle=`rgba(190,255,240,${p.a})`;x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});raf=requestAnimationFrame(f)}f();window.stopIc=()=>cancelAnimationFrame(raf)})();
+(function(){const seq=[["s1",4200],["s2",2900],["s3",3800],["s4",3400]];let i=0;const tot=seq.reduce((a,s)=>a+s[1]+900,600);
+ $("ip").style.transition=`width ${tot}ms linear`;setTimeout(()=>$("ip").style.width="100%",50);
+ function step(){if(i>=seq.length){endIntro();return}const e=$(seq[i][0]);e.classList.add("on");window.t1=setTimeout(()=>{e.classList.remove("on");i++;window.t1=setTimeout(step,900)},seq[i][1])}
+ window.t1=setTimeout(step,600)})();
 
 /* ---- Posters ---- */
 const F='"Inter","Segoe UI",Arial',LBL='PEACE LINK',W=1240,H=1754;
